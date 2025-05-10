@@ -40,7 +40,7 @@ Don't forget to give us access to the repository by either making it public or i
 ### Search
 
 - [✅] The search suggestions below are not being displayed correctly
-- [ ] Pressing on a list entry should open a screen with a movie or a TV series,
+- [✅] Pressing on a list entry should open a screen with a movie or a TV series,
 - [ ] Sending search requests is not optimal
 - [✅] Search result displays all TV series and movies. Add additional filters.
 

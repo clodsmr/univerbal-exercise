@@ -27,21 +27,25 @@ export async function getMovieByIdQuery(
   const url = new URL(`/movies/${movieId}`, apiUrl);
 
   const request = await fetch(url, { signal });
-  if (!request.ok) return;
+  if (!request.ok) throw new Error('Failed to fetch movie details');
 
   return (await request.json()) as Movie;
 }
 
 
-export async function getFeaturedMoviesQuery(signal: AbortSignal): Promise<Movie[]> {
+export async function getFeaturedMoviesQuery(
+  signal: AbortSignal
+): Promise<Movie[]> {
   try {
-    const url = new URL('/movies', apiUrl); 
-    const request = await fetch(url.toString(), { signal });
+    const url = new URL('/movies/recommended', apiUrl);
+    const request = await fetch(url);
     if (!request.ok) return [];
 
-    return (await request.json()) as Movie[];
+    const json = (await request.json()) as Movie[];
+
+    return json;
   } catch (err) {
-    console.error('Failed to fetch featured movies:', err);
+    console.error(err);
     return [];
   }
 }

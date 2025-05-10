@@ -11,8 +11,8 @@ export default function HomeScreen(): ReactNode {
         <Search />
       </View>
 
-      <FeaturedMovies style={{ marginBottom: 40 }} />
-      {/*  <FeaturedTvSeries />  */}
+     {/*  <FeaturedMovies style={{ marginBottom: 40 }} /> */}
+       {/*  <FeaturedTvSeries />   */}
     </View>
   );
 }

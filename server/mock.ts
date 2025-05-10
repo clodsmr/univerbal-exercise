@@ -31,11 +31,14 @@ app.get('/tv-series/:movieId/poster', (req, res) => {
 });
 
 app.get('/movies/recommended', async (req, res) => {
-  const timeoutMs = Math.max(1, Math.random() * 3) * 1000;
+  const timeoutMs = Math.max(2, Math.random() * 5) * 1000;
   await sleep(timeoutMs);
+  
+  console.log('BE', moviesData)
+  res.json(moviesData.movies);
 
-  res.json(moviesData.movies.slice(0, 5));
 });
+
 
 app.get('/tv-series', (req, res) => {
   res.json(tvSeriesData.tvSeries);
