@@ -9,7 +9,6 @@ export default function MovieDetailsScreen({ route }: { route: any }) {
   const { id } = route.params;
   const movie = useAtomValue(loadable(movie$));
 
-console.log('movie details', movie)
   if (!movie) {
     return (
       <View style={styles.container}>

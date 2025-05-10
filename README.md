@@ -32,7 +32,7 @@ Don't forget to give us access to the repository by either making it public or i
 
 - [✅] Running `npm start` does not start the app due to errors in the console
 - [✅] Bottom tab navigation does not display icons
-- [ ] The app is not styled - make it pretty
+- [✅] The app is not styled - make it pretty
 - [ ] The console should not display any warning nor errors in general
 
 ## Home screen (tab-home)
@@ -74,7 +74,7 @@ Don't forget to give us access to the repository by either making it public or i
 
 - [ ] The codebase is inconsistent and should be cleaned up
 - [ ] There should be no visible type errors
-- [ ] The linter should not show errors
+- [✅] The linter should not show errors
 - [ ] The linter should not show warnings
 - [ ] Some files are implemented in javascript - convert them to typescript
 - [ ] Handle network errors gracefully

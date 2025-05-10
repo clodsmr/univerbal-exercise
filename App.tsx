@@ -87,12 +87,22 @@ function App() {
         <Stack.Screen
           name="MovieDetails"
           component={MovieDetailsScreen}
-          options={{ title: 'Movie Details' }}
+          options={{
+          title: 'Movie Details',
+          headerStyle: { backgroundColor: 'black' },
+          headerTitleStyle: { color: 'white' },
+          headerTitleAlign: 'center',
+        }}
         />
         <Stack.Screen
           name="TvSeriesDetails"
           component={TvSeriesDetailsScreen}
-          options={{ title: 'TV Series Details' }}
+          options={{
+          title: 'TV Series Details',
+          headerStyle: { backgroundColor: 'black' },
+          headerTitleStyle: { color: 'white' },
+          headerTitleAlign: 'center',
+        }}
         />
       </Stack.Navigator>
     </NavigationContainer>
