@@ -30,13 +30,10 @@ app.get('/tv-series/:movieId/poster', (req, res) => {
   res.json({ url: req.url + '/img/poster.jpg' });
 });
 
-app.get('/movies/recommended', async (req, res) => {
+app.get('/movies/recommended', (req, res) => {
   const timeoutMs = Math.max(2, Math.random() * 5) * 1000;
-  await sleep(timeoutMs);
-  
-  console.log('BE', moviesData)
-  res.json(moviesData.movies);
-
+   sleep(timeoutMs); 
+  res.json(moviesData.movies.slice(0, 5));
 });
 
 
@@ -47,6 +44,7 @@ app.get('/tv-series', (req, res) => {
 app.get('/tv-series/recommended', async (req, res) => {
   const timeoutMs = Math.max(2, Math.random() * 5) * 1000;
   await sleep(timeoutMs);
+  
 
   res.json(tvSeriesData.tvSeries.slice(0, 5));
 });

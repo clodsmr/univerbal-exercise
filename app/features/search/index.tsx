@@ -14,8 +14,8 @@ import { useAtom, useAtomValue } from 'jotai';
 import { loadable } from 'jotai/utils';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../../domain/type'; // Import the types
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'; // Import the navigation prop type
+import { RootStackParamList } from '../../../domain/type'; 
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'; 
 import { movieId$ } from '@/screens/Details/MovieDetailsScreen/state';
 import { seriesId$ } from '@/screens/Details/TvSeriesDetailsScreen/state';
 
@@ -89,11 +89,12 @@ const searchStyles = StyleSheet.create({
   root: {
     position: 'relative',
     padding: 8,
-    zIndex: 999,
+    zIndex: 999
   },
 
   icon: {
     marginRight: 10,
+    marginLeft: 8
   },
 
   inputContainer: {
@@ -102,15 +103,17 @@ const searchStyles = StyleSheet.create({
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 5,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#444950',
+    color: 'white'
   },
 
   input: {
     height: 40,
     borderWidth: 0,
     width: '100%',
-    paddingLeft: 10,
+    paddingLeft: 0,
     borderRadius: 5,
+     color: 'white'
   },
 
   suggestions: {

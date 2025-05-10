@@ -38,11 +38,11 @@ export async function getFeaturedMoviesQuery(
 ): Promise<Movie[]> {
   try {
     const url = new URL('/movies/recommended', apiUrl);
-    const request = await fetch(url);
-    if (!request.ok) return [];
-
+    const request = await fetch(url, {signal});
+    if (!request.ok) throw new Error('Failed to fetch featured movies');
+    
     const json = (await request.json()) as Movie[];
-
+console.log('json', json)
     return json;
   } catch (err) {
     console.error(err);

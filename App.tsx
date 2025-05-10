@@ -31,7 +31,6 @@ function App() {
       <StatusBar style="auto" animated />
 
       <Stack.Navigator>
-        {/* Main Tab Navigator */}
         <Stack.Screen name="Tab" options={{ headerShown: false }}>
           {() => (
             <Tab.Navigator initialRouteName={appRouteNames.root}>
