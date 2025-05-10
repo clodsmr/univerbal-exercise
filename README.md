@@ -57,8 +57,8 @@ Don't forget to give us access to the repository by either making it public or i
 
 ## Movie and Tv Series screens (movie, tv-series)
 
-- [ ] They display nothing and should display all data about the item
-- [ ] Navigating back should redirect to the correct screen
+- [✅] They display nothing and should display all data about the item
+- [✅] Navigating back should redirect to the correct screen
 
 ## Top rated screen (tab-top-rated)
 
