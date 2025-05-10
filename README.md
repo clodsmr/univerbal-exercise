@@ -67,7 +67,7 @@ Don't forget to give us access to the repository by either making it public or i
 
 ## Favorites screen (tab-favorites)
 
-- [ ] The screen displays two headers - it should display only one
+- [✅] The screen displays two headers - it should display only one
 - [ ] Implement the view
 
 ## Refactoring

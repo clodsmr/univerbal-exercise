@@ -11,7 +11,7 @@ export default function HomeScreen(): ReactNode {
       <View style={{ position: 'relative', paddingHorizontal: 16, paddingTop: 20 }}>
         <Search />
         <View style={{ marginTop: 100 }}>
-         {/*  <FeaturedMovies style={{ marginBottom: 40 }} /> */}
+         {/*  <FeaturedMovies style={{ marginBottom: 40 }} />  */}
           <FeaturedTvSeries />
         </View>
       </View>
