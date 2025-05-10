@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { movies$ } from './state';
 import { useAtomValue } from 'jotai';
 import { loadable } from 'jotai/utils';
+import { inputValue$ } from '../search/state';
 
 type Props = {
   style?: any;
@@ -10,7 +11,10 @@ type Props = {
 
 export function FeaturedMovies({ style }: Props): JSX.Element | null {
   const stateLoadable = useAtomValue(loadable(movies$));
+  const inputValue = useAtomValue(inputValue$);
 
+  if (inputValue?.trim()) return null; 
+  console.log(stateLoadable)
   switch (stateLoadable.state) {
     case 'hasError':
     case 'loading': {
@@ -27,8 +31,7 @@ export function FeaturedMovies({ style }: Props): JSX.Element | null {
                 key={index}
                 isFavorite
                 title={it.title}
-                onFavoritePress={undefined as any}
-              />
+                onFavoritePress={undefined as any} src={''}              />
             ))}
           </ScrollView>
         </View>

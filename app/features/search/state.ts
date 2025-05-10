@@ -17,5 +17,5 @@ export const suggestions$ = atom(async (get, { signal }) => {
   return result
     .concat(movies)
     .concat(tvSeries)
-    .filter((it) => it.title.includes(title));
+    .filter((it) => it.title.toLowerCase().startsWith(title.toLowerCase()));
 });

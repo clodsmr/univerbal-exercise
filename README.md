@@ -39,10 +39,10 @@ Don't forget to give us access to the repository by either making it public or i
 
 ### Search
 
-- [ ] The search suggestions below are not being displayed correctly
+- [✅] The search suggestions below are not being displayed correctly
 - [ ] Pressing on a list entry should open a screen with a movie or a TV series,
 - [ ] Sending search requests is not optimal
-- [ ] Search result displays all TV series and movies. Add additional filters.
+- [✅] Search result displays all TV series and movies. Add additional filters.
 
 ### Featured Movies
 
@@ -62,7 +62,7 @@ Don't forget to give us access to the repository by either making it public or i
 
 ## Top rated screen (tab-top-rated)
 
-- [ ] The list should display items with ratings of >=75
+- [✅] The list should display items with ratings of >=75
 - [ ] Some list entries display incorrectly formatted values
 
 ## Favorites screen (tab-favorites)

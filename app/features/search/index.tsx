@@ -6,10 +6,12 @@ import {
   View,
   ViewStyle,
   Text,
+  FlatList,  
 } from 'react-native';
 import { inputValue$, suggestions$ } from './state';
 import { useAtom, useAtomValue } from 'jotai';
 import { loadable } from 'jotai/utils';
+import { Ionicons } from '@expo/vector-icons';
 
 export type SearchProps = {
   style?: StyleProp<ViewStyle>;
@@ -20,25 +22,41 @@ export function Search({ style }: SearchProps): ReactNode {
   const [inputValue, setInputValue] = useAtom(inputValue$);
   const suggestions = useAtomValue(loadable(suggestions$));
 
+
   return (
     <View style={[searchStyles.root, style]}>
-      <TextInput
-        ref={inputRef}
-        style={{ height: 40, borderColor: 'red', borderWidth: 2 }}
-        placeholder="type to search..."
-        onChangeText={setInputValue}
-        value={inputValue}
-      />
-
-      {!inputValue ? null : (
+      <View style={searchStyles.inputContainer}>
+        <Ionicons
+          name="search"
+          size={20}
+          color="#aaa"
+          style={searchStyles.icon}
+        />
+        <TextInput
+          ref={inputRef}
+          style={searchStyles.input}
+          placeholder="Type to search..."
+          onChangeText={setInputValue}
+          value={inputValue || ''}
+        />
+      </View>
+      {inputValue && (
         <View style={searchStyles.suggestions}>
-          {suggestions.state !== 'hasData'
-            ? null
-            : suggestions.data.map((it) => (
+          {suggestions.state === 'hasData' ? (
+            <FlatList
+              data={suggestions.data}  
+              renderItem={({ item, index }) => (
                 <View style={searchStyles.suggestionEntry}>
-                  <Text>{it.title}</Text>
+                  <Text>{item.title}</Text>
                 </View>
-              ))}
+              )}
+              keyExtractor={(item) => item.id}
+            />
+          ) : suggestions.state === 'loading' ? (
+            <Text>Loading...</Text>  
+          ) : (
+            <Text>No results found</Text>  
+          )}
         </View>
       )}
     </View>
@@ -46,19 +64,50 @@ export function Search({ style }: SearchProps): ReactNode {
 }
 
 const searchStyles = StyleSheet.create({
-  root: {},
-
-  input: {},
-
-  suggestions: {
-    width: '100%',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    backgroundColor: 'white',
-    borderWidth: 2,
-    borderColor: 'yellow',
+  root: {
+    position: 'relative',
+    padding: 8,
+     zIndex: 999,
   },
 
-  suggestionEntry: {},
+  icon: {
+    marginRight: 10,
+  },
+
+   inputContainer: {
+    flexDirection: 'row', 
+    alignItems: 'center',
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: '#f9f9f9',
+  },
+
+  input: {
+    height: 40,
+   /*  borderColor: 'red', */
+    borderWidth: 0,
+    width: "100%",
+    paddingLeft: 10,
+    borderRadius: 5,
+  },
+
+  suggestions: {
+    position: 'absolute',
+    top: 50, 
+    right: 8, 
+    width: 360,
+    backgroundColor: 'white',
+    borderWidth: 1,
+     borderColor: '#ddd', 
+    borderTopWidth: 0,  
+    zIndex: 999,
+
+  },
+
+  suggestionEntry: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
 });

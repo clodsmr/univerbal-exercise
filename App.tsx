@@ -8,6 +8,7 @@ import { appRouteNames } from '@/routes';
 import { z } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 
+
 const Tab = createBottomTabNavigator();
 
 const envSchema = z.object({

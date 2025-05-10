@@ -32,12 +32,20 @@ export async function getMovieByIdQuery(
   return (await request.json()) as Movie;
 }
 
-// TODO: implement
-export async function getFeaturedMoviesQuery(
-  signal: AbortSignal,
-): Promise<Movie[]> {
-  return [];
+
+export async function getFeaturedMoviesQuery(signal: AbortSignal): Promise<Movie[]> {
+  try {
+    const url = new URL('/movies', apiUrl); 
+    const request = await fetch(url.toString(), { signal });
+    if (!request.ok) return [];
+
+    return (await request.json()) as Movie[];
+  } catch (err) {
+    console.error('Failed to fetch featured movies:', err);
+    return [];
+  }
 }
+
 
 export async function getTopRatedMoviesQuery(): Promise<Movie[]> {
   // TODO: implement on backend side
@@ -49,7 +57,7 @@ export async function getTopRatedMoviesQuery(): Promise<Movie[]> {
     const json = (await request.json()) as Movie[];
 
     // top rated has to have a rating above 75%
-    return json.filter((it) => it.rating > 69);
+    return json.filter((it) => it.rating > 75);
   } catch (err) {
     console.error(err);
     return [];
