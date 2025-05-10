@@ -69,7 +69,7 @@ function App() {
           )}
         </Stack.Screen>
 
-        {/* Detail Screens */}
+       
         <Stack.Screen
           name="MovieDetails"
           component={MovieDetailsScreen}
