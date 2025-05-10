@@ -33,12 +33,27 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Tab" options={{ headerShown: false }}>
           {() => (
-            <Tab.Navigator initialRouteName={appRouteNames.root}>
+            <Tab.Navigator   initialRouteName={appRouteNames.root}
+                screenOptions={{
+                  tabBarStyle: {
+                    backgroundColor: 'black',
+                    borderTopColor: 'transparent',
+                  },
+                  tabBarActiveTintColor: 'white',
+
+                  headerStyle: {
+                    backgroundColor: 'black',
+                  },
+                  headerTitleStyle: {
+                    color: 'white',
+                  },
+                  headerTitleAlign: 'center',
+                }}>
               <Tab.Screen
                 name="tab-home"
                 component={HomeScreen}
                 options={{
-                  tabBarLabel: () => null,
+                  title: 'Home',
                   tabBarIcon: ({ color, size }) => (
                     <Ionicons name="home" size={size} color={color} />
                   ),
@@ -48,7 +63,7 @@ function App() {
                 name="tab-top-rated"
                 component={TopRatedScreen}
                 options={{
-                  tabBarLabel: () => null,
+                  title: 'Top Rated',
                   tabBarIcon: ({ color, size }) => (
                     <Ionicons name="star" size={size} color={color} />
                   ),
@@ -58,7 +73,7 @@ function App() {
                 name="tab-favorites"
                 component={FavoritesScreen}
                 options={{
-                  tabBarLabel: () => null,
+                  title: 'Favourites',
                   tabBarIcon: ({ color, size }) => (
                     <Ionicons name="heart" size={size} color={color} />
                   ),
