@@ -16,6 +16,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../domain/type'; // Import the types
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; // Import the navigation prop type
+import { movieId$ } from '@/screens/Details/MovieDetailsScreen/state';
+import { seriesId$ } from '@/screens/Details/TvSeriesDetailsScreen/state';
 
 export type SearchProps = {
   style?: StyleProp<ViewStyle>;
@@ -24,19 +26,20 @@ export type SearchProps = {
 export function Search({ style }: SearchProps): ReactNode {
   const inputRef = useRef<TextInput>(null);
   const [inputValue, setInputValue] = useAtom(inputValue$);
+  const [movieId, setMovieId] = useAtom(movieId$);
+  const [seriesId, setSeriesId] = useAtom(seriesId$);
   const suggestions = useAtomValue(loadable(suggestions$));
 
-  // Navigation
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(); // Use typed navigation
 
-  // Handle suggestion press to navigate to details screen
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(); 
+
+
   const handleSuggestionPress = (item: any) => {
-    // Check if it's a TV series or a movie and navigate accordingly
     if (item.seasons) {
-      // Navigate to TvSeriesDetails
+      setSeriesId(item.id)
       navigation.navigate('TvSeriesDetails', { id: item.id, series: item });
     } else {
-      // Navigate to MovieDetails
+      setMovieId(item.id); 
       navigation.navigate('MovieDetails', { id: item.id, movie: item });
     }
   };

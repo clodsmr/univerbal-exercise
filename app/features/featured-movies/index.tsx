@@ -14,7 +14,6 @@ export function FeaturedMovies({ style }: Props): JSX.Element | null {
   const inputValue = useAtomValue(inputValue$);
 
   if (inputValue?.trim()) return null; 
-  console.log('movies', stateLoadable)
   switch (stateLoadable.state) {
     case 'hasError':
     case 'loading': {

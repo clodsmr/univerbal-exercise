@@ -1,13 +1,13 @@
 import { Atom, atom } from 'jotai';
 import { getMovieByIdQuery } from '@/infrastructure/repositories/movie';
 import { Movie } from 'domain/movie';
-import { Opaque } from 'domain/utils';
 
-type MovieId = Opaque<"movie-id", string>;
-export const movieId$ = atom<MovieId | null>(null);
+
+export const movieId$ = atom<Movie['id'] | null>(null);
 
 export const movie$: Atom<Promise<Movie | undefined>> = atom(async (get, {signal}) => {
   const id = get(movieId$); 
+  console.log('id', id)
 
   if (!id) {
     return undefined; 
