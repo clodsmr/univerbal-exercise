@@ -13,9 +13,14 @@ export const suggestions$ = atom(async (get, { signal }) => {
   const movies = await findMoviesMatchingQuery(signal, { title });
   const tvSeries = await findTvSeriesMatchingQuery({ title });
 
+  const lowerInput = title.toLowerCase();
+
   const result: Suggestion[] = [];
   return result
     .concat(movies)
     .concat(tvSeries)
-    .filter((it) => it.title.toLowerCase().startsWith(title.toLowerCase()));
+    .filter((it) => {
+      const words = it.title.toLowerCase().split(/\s+/); 
+      return words.some(word => word.startsWith(lowerInput));
+    });
 });

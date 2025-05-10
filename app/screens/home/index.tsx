@@ -8,14 +8,13 @@ import ScreenLayout from '../ScreenLayout';
 export default function HomeScreen(): ReactNode {
   return (
     <ScreenLayout>
-    <View>
-      <View style={{ marginBottom: 40 }}>
+      <View style={{ position: 'relative', paddingHorizontal: 16, paddingTop: 20 }}>
         <Search />
+        <View style={{ marginTop: 100 }}>
+         {/*  <FeaturedMovies style={{ marginBottom: 40 }} /> */}
+          <FeaturedTvSeries />
+        </View>
       </View>
-
-    {/*   <FeaturedMovies style={{ marginBottom: 40 }} />  */}
-        <FeaturedTvSeries />    
-    </View>
     </ScreenLayout>
   );
 }
