@@ -2,56 +2,74 @@ import { List } from '@/ui/list';
 import { useAtom } from 'jotai';
 import { loadable } from 'jotai/utils';
 import { useEffect, useState, type ReactNode } from 'react';
-import { Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, StyleSheet, View, FlatList } from 'react-native';
 import { topRatedMovies$ } from './state';
 import { TVSeries } from 'domain/tv-series';
 import { getTopRatedTvSeriesQuery } from '@/infrastructure/repositories/tv-series';
 import { Loader } from '@/ui/loader';
+import ScreenLayout from '../ScreenLayout';
 
-// Displays movies with rating above 75%
 export default function TopRatedScreen(): ReactNode {
   const [topRatedMoviesLoadable] = useAtom(loadable(topRatedMovies$));
+  const [tvSeries, setTvSeries] = useState<TVSeries[]>([]);
 
-  const [tvSeres, set] = useState<TVSeries[]>([]);
-
-  // fetches data for tv series
   useEffect(() => {
     getTopRatedTvSeriesQuery().then((res) => {
-      set(res as TVSeries[]);
+      setTvSeries(res as TVSeries[]);
     });
   }, []);
 
-  if (topRatedMoviesLoadable.state === 'loading') {
-    return <Loader />;
-  }
-
-  // error
+  if (topRatedMoviesLoadable.state === 'loading') return <Loader />;
   if (topRatedMoviesLoadable.state === 'hasError') {
     return <Text>{JSON.stringify(topRatedMoviesLoadable.error)}</Text>;
   }
 
-  if (topRatedMoviesLoadable.state === 'hasData') {
-    return (
-      <ScrollView style={styles.root}>
-        {/* movies */}
-        <Text style={styles.title}>Top rated movies</Text>
-        <List data={topRatedMoviesLoadable.data} style={{ marginBottom: 40 }} />
+  return (
+    <ScreenLayout>
+      <FlatList
+        data={[]} 
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={null}
+        ListHeaderComponent={
+          <View style={styles.container}>
+            {/* Movies Section */}
+            <View style={styles.section}>
+              <Text style={styles.title}>Top rated movies</Text>
+              <List
+                data={topRatedMoviesLoadable.data}
+                style={styles.list}
+              />
+            </View>
 
-        {/* tv series */}
-        <Text style={styles.title}>Top rated tv series</Text>
-        <List data={tvSeres} />
-      </ScrollView>
-    );
-  }
+            {/* TV Series Section */}
+            <View style={styles.section}>
+              <Text style={styles.title}>Top rated TV series</Text>
+              <List
+                data={tvSeries}
+                style={styles.list}
+              />
+            </View>
+          </View>
+        }
+      />
+    </ScreenLayout>
+  );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
+  container: {
+    padding: 16,
   },
-
+  section: {
+    marginBottom: 40,
+  },
   title: {
-    marginBottom: 24,
+    marginBottom: 16,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  list: {
+    marginBottom: 40,
   },
 });

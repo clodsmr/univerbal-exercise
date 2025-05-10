@@ -63,7 +63,7 @@ Don't forget to give us access to the repository by either making it public or i
 ## Top rated screen (tab-top-rated)
 
 - [✅] The list should display items with ratings of >=75
-- [ ] Some list entries display incorrectly formatted values
+- [✅] Some list entries display incorrectly formatted values
 
 ## Favorites screen (tab-favorites)
 
